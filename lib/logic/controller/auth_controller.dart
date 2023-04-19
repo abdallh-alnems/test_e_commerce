@@ -1,3 +1,4 @@
+import 'package:e_commerce/models/facebook_model.dart';
 import 'package:e_commerce/routes/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,9 @@ class AuthController extends GetxController {
   bool isCheckBox = false;
   FirebaseAuth auth = FirebaseAuth.instance;
   String displayUsername = "";
-  var disPlayUserPhoto = "";
+  String disPlayUserPhoto = "";
   GoogleSignIn googleSignIn = GoogleSignIn();
+  FacebookModel? facebookModel;
 
   void visibility() {
     isVisibility = !isVisibility;
@@ -134,6 +136,13 @@ class AuthController extends GetxController {
 
   void facebookSignUpApp() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
-    FacebookAuth.instance.getUserData();
+    if (loginResult.status == LoginStatus.success) {
+      final data = await FacebookAuth.instance.getUserData();
+      facebookModel = FacebookModel.fromJson(data);
+      update();
+      Get.offNamed(Routes.mainScreen);
+    }
+    final data = await FacebookAuth.instance.getUserData();
+    facebookModel = FacebookModel.fromJson(data);
   }
 }
