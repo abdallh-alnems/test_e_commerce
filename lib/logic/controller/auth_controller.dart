@@ -125,7 +125,7 @@ class AuthController extends GetxController {
       update();
       Get.offNamed(Routes.mainScreen);
     } catch (e) {
-            Get.snackbar("Error", e.toString(),
+      Get.snackbar("Error", e.toString(),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white);
@@ -133,10 +133,7 @@ class AuthController extends GetxController {
   }
 
   void facebookSignUpApp() async {
-
-  final LoginResult loginResult = await FacebookAuth.instance.login();
-
-
-
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    FacebookAuth.instance.getUserData();
   }
 }
