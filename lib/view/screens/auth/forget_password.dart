@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:e_commerce/logic/controller/auth_controller.dart';
 import 'package:e_commerce/utils/my_strings.dart';
 import 'package:e_commerce/utils/theme.dart';
@@ -21,10 +23,10 @@ class ForgetPasswordScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
           title: Text(
             "Forget Password",
-            style: TextStyle(color: Get.isDarkMode ? mainColor : pinkClr),
+            style: TextStyle(color: Get.isDarkMode ? pinkClr : mainColor),
           ),
           leading: IconButton(
             onPressed: () {
@@ -36,7 +38,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: Get.isDarkMode ? Colors.white : Colors.black,
+          backgroundColor: context.theme.backgroundColor,
         body: Form(
             key: formKey,
             child: SingleChildScrollView(
@@ -87,12 +89,12 @@ class ForgetPasswordScreen extends StatelessWidget {
                         }
                       },
                       prefixIcon: Get.isDarkMode
-                          ? Image.asset('assets/images/email.png')
-                          : Icon(
+                          ? 
+                           Icon(
                               Icons.email,
                               color: pinkClr,
                               size: 30,
-                            ),
+                            ) : Image.asset('assets/images/email.png'),
                       suffixIcon: const Text(""),
                       hintText: "Email",
                     ),

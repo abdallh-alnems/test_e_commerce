@@ -12,7 +12,7 @@ class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   String displayUsername = "";
   String disPlayUserPhoto = "";
-  GoogleSignIn googleSignIn = GoogleSignIn();
+  var googleSignIn = GoogleSignIn();
   FacebookModel? facebookModel;
 
   void visibility() {

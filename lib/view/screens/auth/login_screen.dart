@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:e_commerce/logic/controller/auth_controller.dart';
 import 'package:e_commerce/routes/routes.dart';
 import 'package:e_commerce/utils/my_strings.dart';
@@ -21,10 +23,10 @@ class LoginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
           elevation: 0,
         ),
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: context.theme.backgroundColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -43,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                               text: "Log",
                               fontSize: 28,
                               fontWeight: FontWeight.w500,
-                              color: Get.isDarkMode ? mainColor : pinkClr,
+                              color: Get.isDarkMode ? pinkClr : mainColor,
                             ),
                             const SizedBox(
                               width: 3,
@@ -53,16 +55,14 @@ class LoginScreen extends StatelessWidget {
                               fontSize: 28,
                               fontWeight: FontWeight.w500,
                               color:
-                                  Get.isDarkMode ? Colors.black : Colors.white,
+                                  Get.isDarkMode ? Colors.white : Colors.black,
                             ),
                           ],
                         ),
                         const SizedBox(
                           height: 40,
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        
                         AuthTextFormFiled(
                           controller: emailController,
                           obscureText: false,
@@ -74,12 +74,12 @@ class LoginScreen extends StatelessWidget {
                             }
                           },
                           prefixIcon: Get.isDarkMode
-                              ? Image.asset('assets/images/email.png')
-                              : Icon(
+                              ? 
+                               Icon(
                                   Icons.email,
                                   color: pinkClr,
                                   size: 30,
-                                ),
+                                ) : Image.asset('assets/images/email.png'),
                           suffixIcon: const Text(""),
                           hintText: "Email",
                         ),
@@ -98,23 +98,23 @@ class LoginScreen extends StatelessWidget {
                               }
                             },
                             prefixIcon: Get.isDarkMode
-                                ? Image.asset('assets/images/lock.png')
-                                : Icon(
+                                ?
+                                 Icon(
                                     Icons.lock,
                                     color: pinkClr,
                                     size: 30,
-                                  ),
+                                  ) : Image.asset('assets/images/lock.png'),
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   controller.visibility();
                                 },
                                 icon: controller.isVisibility
                                     ? const Icon(
-                                        Icons.visibility_off,
+                                        Icons.visibility,
                                         color: Colors.black,
                                       )
                                     : const Icon(
-                                        Icons.visibility,
+                                        Icons.visibility_off,
                                         color: Colors.black,
                                       )),
                             hintText: "Password",
@@ -124,15 +124,15 @@ class LoginScreen extends StatelessWidget {
                           alignment: Alignment.bottomRight,
                           child: TextButton(
                             onPressed: () {
-                              Get.toNamed(Routes.forgetpasswordscreen);
+                              Get.toNamed(Routes.forgetPasswordScreen);
                             },
                             child: TextUtils(
                                 text: "Forget password?",
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
                                 color: Get.isDarkMode
-                                    ? Colors.black
-                                    : Colors.white),
+                                    ? Colors.white
+                                    : Colors.black),
                           ),
                         ),
                         const SizedBox(
@@ -152,14 +152,14 @@ class LoginScreen extends StatelessWidget {
                           );
                         }),
                         const SizedBox(
-                          height: 28,
+                          height: 20,
                         ),
                         TextUtils(
                             text: 'OR',
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color:
-                                Get.isDarkMode ? Colors.black : Colors.white),
+                                Get.isDarkMode ? Colors.white : Colors.black),
                         const SizedBox(
                           height: 20,
                         ),
