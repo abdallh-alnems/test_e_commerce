@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 class AppRoutes {
   //initialRoute
   static const welcome = Routes.welcomeScreen;
+  static const mainScreen = Routes.mainScreen;
 
 //getPages
   static final routes = [
@@ -32,21 +33,17 @@ class AppRoutes {
       page: () => ForgetPasswordScreen(),
       binding: AuthBinding(),
     ),
-     GetPage(
+    GetPage(
       name: Routes.mainScreen,
-      page: () =>  MainScreen(),
-      bindings:  [
-        AuthBinding(),
-        MainBinding()
-      ],
-        
+      page: () => MainScreen(),
+      bindings: [AuthBinding(), MainBinding()],
     ),
   ];
 }
 
 class Routes {
   static const welcomeScreen = '/welcomeScreen';
-  static const  loginScreen = '/LoginScreen';
+  static const loginScreen = '/LoginScreen';
   static const signUpScreen = '/signUpScreen';
   static const forgetPasswordScreen = '/forgetPasswordScreen';
   static const mainScreen = '/mainScreen';

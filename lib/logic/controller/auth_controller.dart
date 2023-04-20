@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
@@ -12,8 +13,10 @@ class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   String displayUsername = "";
   String disPlayUserPhoto = "";
-  var googleSignIn = GoogleSignIn();
+  GoogleSignIn googleSignIn = GoogleSignIn();
   FacebookModel? facebookModel;
+  bool isSigedIn = false;
+  final GetStorage authBox = GetStorage();
 
   void visibility() {
     isVisibility = !isVisibility;
@@ -58,7 +61,24 @@ class AuthController extends GetxController {
     }
   }
 
-  void signOutFromApp() {}
+  void signOutFromApp() async {
+    try {
+      await auth.signOut();
+      await googleSignIn.signOut();
+      await FacebookAuth.i.logOut();
+      displayUsername = '';
+      disPlayUserPhoto = '';
+      isSigedIn = false;
+      authBox.remove("auth");
+      update();
+      Get.offNamed(Routes.welcomeScreen);
+    } catch (e) {
+      Get.snackbar("Error", e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white);
+    }
+  }
 
   void logInUsingFirebase({
     required String email,
@@ -68,6 +88,8 @@ class AuthController extends GetxController {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) => displayUsername = auth.currentUser!.displayName!);
+      isSigedIn = true;
+      authBox.write('auth', isSigedIn);
       update();
       Get.offAllNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (e) {
@@ -124,6 +146,9 @@ class AuthController extends GetxController {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       displayUsername = googleUser!.displayName!;
       disPlayUserPhoto = googleUser.photoUrl!;
+      isSigedIn = true;
+      authBox.write('auth', isSigedIn);
+
       update();
       Get.offNamed(Routes.mainScreen);
     } catch (e) {
@@ -139,6 +164,9 @@ class AuthController extends GetxController {
     if (loginResult.status == LoginStatus.success) {
       final data = await FacebookAuth.instance.getUserData();
       facebookModel = FacebookModel.fromJson(data);
+      isSigedIn = true;
+      authBox.write('auth', isSigedIn);
+
       update();
       Get.offNamed(Routes.mainScreen);
     }
