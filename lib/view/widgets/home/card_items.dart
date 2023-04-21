@@ -1,38 +1,62 @@
+import 'package:e_commerce/logic/controller/product_controller.dart';
 import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/widgets/text_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CardItems extends StatelessWidget {
-  const CardItems({super.key});
+  CardItems({super.key});
+  final controller = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return  Center(
+          child: CircularProgressIndicator(
+            color: Get.isDarkMode?pinkClr : mainColor,
+          ),
+        );
+      }else{
+      return  Expanded(
       child: GridView.builder(
-        itemCount: 10,
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        itemCount: controller.productList.length,
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             childAspectRatio: 0.8,
             mainAxisSpacing: 9.0,
             crossAxisSpacing: 6.0,
             maxCrossAxisExtent: 200),
         itemBuilder: (context, index) {
-          return buildCardItems();
+          return buildCardItems(
+            image: controller.productList[index].image,
+            price: controller.productList[index].price,
+            rate: controller.productList[index].rating.rate
+          );
         },
       ),
     );
+      }
+    });
   }
 
-  Widget buildCardItems() {
+  Widget buildCardItems({
+    required String image,
+    required double price,
+    required double rate,
+
+ }) {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Container(
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(15), boxShadow: [
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 3.0,
-              blurRadius: 5.0)
-        ]),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 3.0,
+                  blurRadius: 5.0)
+            ]),
         child: Column(
           children: [
             Row(
@@ -62,18 +86,18 @@ class CardItems extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.network(
-                "https://images.unsplash.com/photo-1681673211977-2d3274d07ff9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                image,
                 fit: BoxFit.fitHeight,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15,top: 10),
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                const  Text(
-                    "\$15",
-                    style: TextStyle(
+                   Text(
+                    "\$ $price",
+                    style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                   Container(
@@ -86,14 +110,14 @@ class CardItems extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 3, right: 2),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children:  [
                           TextUtils(
-                            text: "4.7",
+                            text: "$rate",
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.star,
                             size: 13,
                             color: Colors.white,
