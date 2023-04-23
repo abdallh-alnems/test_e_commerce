@@ -12,29 +12,30 @@ class CardItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (controller.isLoading.value) {
-        return  Center(
+        return Center(
           child: CircularProgressIndicator(
-            color: Get.isDarkMode?pinkClr : mainColor,
+            color: Get.isDarkMode ? pinkClr : mainColor,
           ),
         );
-      }else{
-      return  Expanded(
-      child: GridView.builder(
-        itemCount: controller.productList.length,
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            childAspectRatio: 0.8,
-            mainAxisSpacing: 9.0,
-            crossAxisSpacing: 6.0,
-            maxCrossAxisExtent: 200),
-        itemBuilder: (context, index) {
-          return buildCardItems(
-            image: controller.productList[index].image,
-            price: controller.productList[index].price,
-            rate: controller.productList[index].rating.rate
-          );
-        },
-      ),
-    );
+      } else {
+        return Expanded(
+          child: GridView.builder(
+            itemCount: controller.productList.length,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                childAspectRatio: 0.8,
+                mainAxisSpacing: 9.0,
+                crossAxisSpacing: 6.0,
+                maxCrossAxisExtent: 200),
+            itemBuilder: (context, index) {
+              return buildCardItems(
+                image: controller.productList[index].image,
+                price: controller.productList[index].price,
+                rate: controller.productList[index].rating.rate,
+                productId: controller.productList[index].id,
+              );
+            },
+          ),
+        );
       }
     });
   }
@@ -43,8 +44,8 @@ class CardItems extends StatelessWidget {
     required String image,
     required double price,
     required double rate,
-
- }) {
+    required int productId,
+  }) {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Container(
@@ -59,24 +60,33 @@ class CardItems extends StatelessWidget {
             ]),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_outline,
-                    color: Colors.black,
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      controller.mangeFavourites(productId);
+                    },
+                    icon: controller.isFavourtes(productId)
+                        ? Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          )
+                        : Icon(
+                            Icons.favorite_outline,
+                            color: Colors.black,
+                          ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.add,
-                    color: Colors.black,
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.add,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Container(
               width: double.infinity,
@@ -95,7 +105,7 @@ class CardItems extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
+                  Text(
                     "\$ $price",
                     style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
@@ -110,7 +120,7 @@ class CardItems extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 3, right: 2),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:  [
+                        children: [
                           TextUtils(
                             text: "$rate",
                             fontSize: 13,
