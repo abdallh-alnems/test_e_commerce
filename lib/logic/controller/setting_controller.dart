@@ -1,10 +1,9 @@
 import 'package:e_commerce/utils/my_strings.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class SettingController extends GetxController {
-  RxBool switchValue = false.obs;
+  RxBool switchValue = true.obs;
   GetStorage storage = GetStorage();
   String langLocal = ene;
   String capitalize(String profileName) {

@@ -38,9 +38,8 @@ class ContainerUnder extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              underLine: TextDecoration.underline,
             ),
-          )
+          ),
         ],
       ),
     );

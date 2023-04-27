@@ -53,7 +53,7 @@ class _DeliveryContinerWidgetState extends State<DeliveryContinerWidget> {
             color: changeColors ? Colors.grey.shade300 : Colors.white,
             icon: InkWell(
               onTap: () {
-                Get.defaultDialog(
+                Get.defaultDialog( 
                   title: "Enter Your Phone Number",
                   titleStyle: const TextStyle(
                     fontSize: 16,
@@ -80,7 +80,7 @@ class _DeliveryContinerWidgetState extends State<DeliveryContinerWidget> {
                       controller: phoneController,
                       cursorColor: Colors.black,
                       maxLength: 11,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       onSubmitted: (value) {
                         phoneController.text = value;
                       },
