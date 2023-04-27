@@ -62,7 +62,7 @@ class SignUpScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 40,
+                          height: 50,
                         ),
                         AuthTextFormFiled(
                           controller: nameController,
@@ -77,7 +77,7 @@ class SignUpScreen extends StatelessWidget {
                           },
                           prefixIcon: Get.isDarkMode
                               ? 
-                               Icon(
+                           const    Icon(
                                   Icons.person,
                                   color: pinkClr,
                                   size: 30,
@@ -100,7 +100,7 @@ class SignUpScreen extends StatelessWidget {
                           },
                           prefixIcon: Get.isDarkMode
                               ? 
-                               Icon(
+                         const      Icon(
                                   Icons.email,
                                   color: pinkClr,
                                   size: 30,
@@ -124,7 +124,7 @@ class SignUpScreen extends StatelessWidget {
                             },
                             prefixIcon: Get.isDarkMode
                                 ? 
-                                 Icon(
+                              const   Icon(
                                     Icons.lock,
                                     color: pinkClr,
                                     size: 30,
@@ -146,11 +146,11 @@ class SignUpScreen extends StatelessWidget {
                           );
                         }),
                         const SizedBox(
-                          height: 40,
+                          height: 50,
                         ),
                         CheckWidget(),
                         const SizedBox(
-                          height: 40,
+                          height: 50,
                         ),
                         GetBuilder<AuthController>(
                           builder: (_) {

@@ -11,12 +11,23 @@ class AuthController extends GetxController {
   bool isVisibility = false;
   bool isCheckBox = false;
   FirebaseAuth auth = FirebaseAuth.instance;
-  String displayUsername = "";
-  String disPlayUserPhoto = "";
+  RxString displayUserName = "".obs;
+  RxString disPlayUserPhoto = "".obs;
+  RxString disPlayUserEmail = "".obs;
   GoogleSignIn googleSignIn = GoogleSignIn();
   FacebookModel? facebookModel;
   bool isSigedIn = false;
   final GetStorage authBox = GetStorage();
+  User? get userProfile => auth.currentUser;
+  @override
+  void onInit() {
+    super.onInit();
+    displayUserName.value =
+        (userProfile != null ? userProfile!.displayName : "")!;
+    disPlayUserPhoto.value =
+        (userProfile != null ? userProfile!.photoURL : "")!;
+    disPlayUserEmail.value = (userProfile != null ? userProfile!.email : "")!;
+  }
 
   void visibility() {
     isVisibility = !isVisibility;
@@ -36,7 +47,7 @@ class AuthController extends GetxController {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        displayUsername = name;
+        displayUserName.value = name;
         auth.currentUser!.updateDisplayName(name);
       });
       update();
@@ -66,8 +77,9 @@ class AuthController extends GetxController {
       await auth.signOut();
       await googleSignIn.signOut();
       await FacebookAuth.i.logOut();
-      displayUsername = '';
-      disPlayUserPhoto = '';
+      displayUserName.value = '';
+      disPlayUserPhoto.value = '';
+      disPlayUserEmail.value = "";
       isSigedIn = false;
       authBox.remove("auth");
       update();
@@ -87,7 +99,8 @@ class AuthController extends GetxController {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) => displayUsername = auth.currentUser!.displayName!);
+          .then((value) =>
+              displayUserName.value = auth.currentUser!.displayName!);
       isSigedIn = true;
       authBox.write('auth', isSigedIn);
       update();
@@ -144,8 +157,17 @@ class AuthController extends GetxController {
   void googleSignUpApp() async {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      displayUsername = googleUser!.displayName!;
-      disPlayUserPhoto = googleUser.photoUrl!;
+      displayUserName.value = googleUser!.displayName!;
+      disPlayUserPhoto.value = googleUser.photoUrl!;
+      disPlayUserEmail.value = googleUser.email;
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken,
+      );
+
+      await auth.signInWithCredential(credential);
       isSigedIn = true;
       authBox.write('auth', isSigedIn);
 
