@@ -16,18 +16,18 @@ class SearchFormText extends StatelessWidget {
           controller.addSearchToList(searchName);
         },
         decoration: InputDecoration(
-          fillColor: Colors.white,
+          fillColor: Get.isDarkMode ? Colors.grey : Colors.white,
           focusColor: Colors.red,
           prefixIcon: const Icon(
             Icons.search,
-            color: Colors.grey,
+            color: Colors.black,
           ),
           suffixIcon: controller.searchTextController.text.isNotEmpty
               ? IconButton(
                   onPressed: () {
                     controller.clearSearch();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close,
                     color: Colors.black,
                   ),
@@ -35,7 +35,10 @@ class SearchFormText extends StatelessWidget {
               : null,
           hintText: "Search with name & price",
           hintStyle: const TextStyle(
-              color: Colors.black45, fontSize: 16, fontWeight: FontWeight.w500),
+            color: Colors.black45,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
           filled: true,
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.white),

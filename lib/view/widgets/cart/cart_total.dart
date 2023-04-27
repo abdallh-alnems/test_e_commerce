@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartTotal extends StatelessWidget {
-   CartTotal({super.key});
+  CartTotal({super.key});
 
-    final controller = Get.find<CartController>();
-
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class CartTotal extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              const  TextUtils(
+                const TextUtils(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   text: "Total",
@@ -54,6 +53,7 @@ class CartTotal extends StatelessWidget {
                     backgroundColor: Get.isDarkMode ? pinkClr : mainColor,
                   ),
                   onPressed: () {
+                    Get.toNamed(Routes.paymentScreen);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

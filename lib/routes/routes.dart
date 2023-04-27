@@ -6,6 +6,7 @@ import 'package:e_commerce/view/screens/auth/forget_password.dart';
 import 'package:e_commerce/view/screens/auth/login_screen.dart';
 import 'package:e_commerce/view/screens/auth/signup_screen.dart';
 import 'package:e_commerce/view/screens/main_screen.dart';
+import 'package:e_commerce/view/screens/payment_screen.dart';
 import 'package:e_commerce/view/screens/welcome_screen.dart';
 import 'package:get/get.dart';
 
@@ -44,14 +45,19 @@ class AppRoutes {
         ProductBinding(),
       ],
     ),
-    
     GetPage(
       name: Routes.cartScreen,
       page: () => CartScreen(),
-      bindings:[
+      bindings: [AuthBinding(), ProductBinding()],
+    ),
+    GetPage(
+      name: Routes.paymentScreen,
+      page: () => PayMentScreen(),
+      bindings: [
         AuthBinding(),
-        ProductBinding()
-      ] ,
+        ProductBinding(),
+        MainBinding(),
+      ],
     ),
   ];
 }
@@ -63,4 +69,5 @@ class Routes {
   static const forgetPasswordScreen = '/forgetPasswordScreen';
   static const mainScreen = '/mainScreen';
   static const cartScreen = '/cartScreen';
+  static const paymentScreen = '/PayMentScreen';
 }

@@ -37,12 +37,14 @@ dependencies:
     sdk: flutter
   flutter_facebook_auth: any
   flutter_rating_bar: ^4.0.1
-  
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
   get: ^4.6.5
   get_storage: ^2.1.1
   google_fonts: ^4.0.3
   google_sign_in: ^6.1.0
   http: ^0.13.5
+  pay: ^1.1.1
   readmore: ^2.2.0
   smooth_page_indicator: ^1.1.0
 

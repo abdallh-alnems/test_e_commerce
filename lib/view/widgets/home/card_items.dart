@@ -26,7 +26,7 @@ class CardItems extends StatelessWidget {
           child: controller.searchList.isEmpty &&
                   controller.searchTextController.text.isNotEmpty
               ? Get.isDarkMode
-                  ? Image.asset("asset/images/search_empty_dark.png")
+                  ? Image.asset("assets/images/search_empty_dark.png")
                   : Image.asset("assets/images/search_empry_light.png")
               : GridView.builder(
                   itemCount: controller.searchList.isEmpty
