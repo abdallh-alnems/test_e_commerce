@@ -63,6 +63,7 @@ class LanguageWidget extends StatelessWidget {
                 ),
                 items: [
                   DropdownMenuItem(
+                    value: ene,
                     child: Text(
                       english,
                       style: const TextStyle(
@@ -70,9 +71,9 @@ class LanguageWidget extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    value: ene,
                   ),
                   DropdownMenuItem(
+                    value: ara,
                     child: Text(
                       arabic,
                       style: const TextStyle(
@@ -80,9 +81,9 @@ class LanguageWidget extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    value: ara,
                   ),
                   DropdownMenuItem(
+                    value: frf,
                     child: Text(
                       france,
                       style: const TextStyle(
@@ -90,7 +91,6 @@ class LanguageWidget extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    value: frf,
                   ),
                 ],
                 value: controller.langLocal,

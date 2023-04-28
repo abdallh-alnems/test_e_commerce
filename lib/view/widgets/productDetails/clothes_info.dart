@@ -4,7 +4,6 @@ import 'package:e_commerce/view/widgets/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:readmore/readmore.dart';
 
 class ClothesInfo extends StatelessWidget {
@@ -86,7 +85,7 @@ class ClothesInfo extends StatelessWidget {
               ),
 
               RatingBarIndicator(
-                itemPadding: EdgeInsets.symmetric(horizontal: 4),
+                itemPadding: const EdgeInsets.symmetric(horizontal: 4),
                 rating: rate,
                 itemCount: 5,
                 itemSize : 20,

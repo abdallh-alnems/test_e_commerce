@@ -48,6 +48,7 @@ class ProductModels {
     };
 }
 
+// ignore: constant_identifier_names
 enum Category { MEN_S_CLOTHING, JEWELERY, ELECTRONICS, WOMEN_S_CLOTHING }
 
 final categoryValues = EnumValues({

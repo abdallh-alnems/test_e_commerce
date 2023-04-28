@@ -52,7 +52,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                         onPressed: () {
                           Get.back();
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.close_rounded,
                           color: Colors.white,
                         ),
@@ -90,7 +90,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       },
                       prefixIcon: Get.isDarkMode
                           ? 
-                           Icon(
+                        const   Icon(
                               Icons.email,
                               color: pinkClr,
                               size: 30,

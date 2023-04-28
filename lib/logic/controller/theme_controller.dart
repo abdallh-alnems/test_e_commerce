@@ -14,6 +14,7 @@ class ThemeController {
     return boxStorage.read<bool>(key) ?? false;
   }
 
+  // ignore: non_constant_identifier_names
   ThemeMode get ThemeDataGet =>
       getThemeDataFormBox() ? ThemeMode.dark : ThemeMode.light;
 

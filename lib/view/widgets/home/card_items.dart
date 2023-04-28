@@ -103,11 +103,11 @@ class CardItems extends StatelessWidget {
                         controller.mangeFavourites(productId);
                       },
                       icon: controller.isFavourtes(productId)
-                          ? Icon(
+                          ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
                             )
-                          : Icon(
+                          : const Icon(
                               Icons.favorite_outline,
                               color: Colors.black,
                             ),

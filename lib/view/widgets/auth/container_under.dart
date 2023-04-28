@@ -14,7 +14,7 @@ class ContainerUnder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 80,
+      height: 100,
       decoration:  BoxDecoration(
         color: Get.isDarkMode ? pinkClr : mainColor,
          borderRadius: const BorderRadius.only(

@@ -115,6 +115,7 @@ class SignUpScreen extends StatelessWidget {
                           return AuthTextFormFiled(
                             controller: passwordController,
                             obscureText: controller.isVisibility ? false : true,
+                            // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
                             validator: (Value) {
                               if (Value.toString().length < 6) {
                                 return "Password should be longer or equal to 6 characters";

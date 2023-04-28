@@ -8,6 +8,7 @@
         "exting",
         "favourites",
         "Favourtes",
+        "forgetpass",
         "GÉNÉRAL",
         "geolocator",
         "Indes",
@@ -15,8 +16,14 @@
         "Placemark",
         "placemarks",
         "readmore",
+        "reson",
         "Seletected",
         "Siged",
-        "userprofile"
+        "signup",
+        "userprofile",
+        "الداكن",
+        "الوضع",
+        "تسجيل",
+        "خروج"
     ]
 }

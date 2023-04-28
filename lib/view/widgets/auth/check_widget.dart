@@ -26,7 +26,7 @@ class CheckWidget extends StatelessWidget {
               ),
               child: controller.isCheckBox ? Get.isDarkMode
                   ?
-                   Icon(
+                const   Icon(
                       Icons.done,
                       color: pinkClr,
                       size: 30,

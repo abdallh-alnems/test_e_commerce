@@ -58,7 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       TextUtils(
-                        text: "asroo",
+                        text: "Dega",
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
                         color: mainColor,

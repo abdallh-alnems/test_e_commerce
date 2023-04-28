@@ -24,17 +24,16 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      locale:Locale(GetStorage().read<String>('lang').toString()),
+      locale: Locale(GetStorage().read<String>('lang').toString()),
       fallbackLocale: Locale(ene),
       translations: LocalizationApp(),
-      
       theme: ThemesApp.light,
       darkTheme: ThemesApp.dark,
       themeMode: ThemeController().ThemeDataGet,
       initialRoute: FirebaseAuth.instance.currentUser != null ||
               GetStorage().read<bool>('auth') == true
           ? AppRoutes.mainScreen
-          : AppRoutes.welcome ,
+          : AppRoutes.welcome,
       getPages: AppRoutes.routes,
     );
   }
