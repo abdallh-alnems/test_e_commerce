@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CardItems extends StatelessWidget {
-  CardItems({super.key});
+             CardItems({super.key});
   final controller = Get.find<ProductController>();
   final cartController = Get.find<CartController>();
 

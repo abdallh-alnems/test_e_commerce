@@ -29,41 +29,44 @@ class CartScreen extends StatelessWidget {
           ],
           centerTitle: true,
         ),
-        body: Obx(
-          () {
-            if (controller.productsMap.isEmpty) {
-              return const EmptyCart();
-            } else {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 600,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return CartProductCard(
-                            index: index,
-                            productModels:
-                                controller.productsMap.keys.toList()[index],
-                            quantity:
-                                controller.productsMap.values.toList()[index],
-                          );
-                        },
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 20,
+        body: SingleChildScrollView(
+          child:  SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Obx(
+                () {
+                  if (controller.productsMap.isEmpty) {
+                    return const EmptyCart();
+                  } else {
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: 450,
+                          child: ListView.separated(
+                            itemBuilder: (context, index) {
+                              return CartProductCard(
+                                index: index,
+                                productModels:
+                                    controller.productsMap.keys.toList()[index],
+                                quantity:
+                                    controller.productsMap.values.toList()[index],
+                              );
+                            },
+                            separatorBuilder: (context, index) => const SizedBox(
+                              height: 20,
+                            ),
+                            itemCount: controller.productsMap.length,
+                          ),
                         ),
-                        itemCount: controller.productsMap.length,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 30),
-                      child: CartTotal(),
-                    ),
-                  ],
-                ),
-              );
-            }
-          },
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 30),
+                          child: CartTotal(),
+                        ),
+                      ],
+                    );
+                  }
+                },
+              ),
+          ),
         ),
       ),
     );
